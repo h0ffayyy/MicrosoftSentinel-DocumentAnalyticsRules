@@ -42,8 +42,6 @@ Install with `pip3 install -r requirements.txt`
 
 ### Azure authentication
 
-Be sure to set your Azure subscription ID, resource group name, and workspace name in the script.
-
 This script uses the `DefaultAzureCredential` credential class for 
 authenticating to Azure. See the Azure 
 [documentation](https://learn.microsoft.com/en-us/python/api/overview/azure/identity-readme?view=azure-python#defaultazurecredential) 
@@ -59,3 +57,25 @@ changes. The table is configured to use the "NewStyle" table style.
 The screenshot below shows the default styling:
 
 ![](/images/document_example.png)
+
+## Usage
+
+```shell
+python analytics2docx.py --help
+usage: analytics2docx.py [-h] [-s] [-e] -r RESOURCE_GROUP -w WORKSPACE -i SUBSCRIPTION_ID
+
+Create a Microsoft Word document from analytic rules in a Microsoft Sentinel workspace
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -s, --scheduled       only include scheduled analytic rules
+  -e, --enabled         only include enabled analytic rules
+  -r RESOURCE_GROUP, --resource-group RESOURCE_GROUP
+                        resource group name
+  -w WORKSPACE, --workspace WORKSPACE
+                        workspace name
+  -i SUBSCRIPTION_ID, --subscription-id SUBSCRIPTION_ID
+                        subscription id
+```
+
+
