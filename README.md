@@ -4,7 +4,8 @@ This is a basic python script that aims to assist SOC teams in creating
 documentation for their Microsoft Sentinel analytic rules. The script
 utilizes python-docx to automate creation of a Microsoft Word document
 with the relevant analytic rule details. This script also supports the
-creation of markdown files.
+creation of markdown files, and has an option to have OpenAI's GPT 
+assist in creating some of the documentation!
 
 ## Details
 
@@ -35,6 +36,7 @@ This script is written in Python3 and requires the following packages:
 - `azure-identity`
 - `python-docx`
 - `mdutils`
+- `openai`
 
 Install with `pip3 install -r requirements.txt`
 
@@ -61,10 +63,20 @@ The screenshot below shows the default styling:
 
 ![](/images/document_example.png)
 
+### Open AI GPT integration
+There is an included flag that uses OpenAI's Chat completion API to help generate
+some of the fields, such as the runbook and false positives section. It's highly recommended
+to have a human manually review the output for correctness 🙂
+
+To enable the integration, use the `-a` flag. You will be asked to enter your OpenAI API key.
+
+> [!NOTE]
+> This will greatly increase the time to generate the documentation.
+
 ## Usage
 
 ```shell
-usage: document_analytics.py [-h] -o OUTPUT [-s] [-e] -r RESOURCE_GROUP -w WORKSPACE -i SUBSCRIPTION_ID
+usage: document_analytics.py [-h] -o OUTPUT [-a] [-s] [-e] -r RESOURCE_GROUP -w WORKSPACE -i SUBSCRIPTION_ID
 
 A tool to help document analytics rules in a Microsoft Sentinel workspace
 
@@ -72,6 +84,7 @@ optional arguments:
   -h, --help            show this help message and exit
   -o OUTPUT, --output OUTPUT
                         output format (md or docx)
+  -a, --assist          use OpenAI's GPT API to assist in completing the documentation
   -s, --scheduled       only include scheduled analytic rules
   -e, --enabled         only include enabled analytic rules
   -r RESOURCE_GROUP, --resource-group RESOURCE_GROUP
