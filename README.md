@@ -3,7 +3,8 @@
 This is a basic python script that aims to assist SOC teams in creating 
 documentation for their Microsoft Sentinel analytic rules. The script
 utilizes python-docx to automate creation of a Microsoft Word document
-with the relevant analytic rule details.
+with the relevant analytic rule details. This script also supports the
+creation of markdown files.
 
 ## Details
 
@@ -33,10 +34,12 @@ This script is written in Python3 and requires the following packages:
 - `azure-mgmt-loganalytics`
 - `azure-identity`
 - `python-docx`
+- `mdutils`
 
 Install with `pip3 install -r requirements.txt`
 
-**NOTE:** You may need to install `azure-mgmt-loganalytics==13.0.0b6`. I had a problem retrieving log analytics table names with the default version `12.0.0` similar to the issue shown here: https://github.com/Azure/azure-sdk-for-python/issues/28161
+> [!IMPORTANT]
+> You may need to install `azure-mgmt-loganalytics==13.0.0b6`. I had a problem retrieving log analytics table names with the default version `12.0.0` similar to the issue shown here: https://github.com/Azure/azure-sdk-for-python/issues/28161
 
 ## Configuration
 
@@ -61,13 +64,14 @@ The screenshot below shows the default styling:
 ## Usage
 
 ```shell
-python analytics2docx.py --help
-usage: analytics2docx.py [-h] [-s] [-e] -r RESOURCE_GROUP -w WORKSPACE -i SUBSCRIPTION_ID
+usage: document_analytics.py [-h] -o OUTPUT [-s] [-e] -r RESOURCE_GROUP -w WORKSPACE -i SUBSCRIPTION_ID
 
-Create a Microsoft Word document from analytic rules in a Microsoft Sentinel workspace
+A tool to help document analytics rules in a Microsoft Sentinel workspace
 
 optional arguments:
   -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        output format (md or docx)
   -s, --scheduled       only include scheduled analytic rules
   -e, --enabled         only include enabled analytic rules
   -r RESOURCE_GROUP, --resource-group RESOURCE_GROUP
