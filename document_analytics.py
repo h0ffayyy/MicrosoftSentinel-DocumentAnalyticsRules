@@ -156,7 +156,7 @@ def get_analytic_rules(args, securityinsights_client):
         print("[+] Getting analytic rules...")
         for analytic_rule in analytic_rules:
             if args.scheduled:
-                if analytic_rule.kind == "Scheduled" in analytic_rule.display_name:
+                if analytic_rule.kind == "Scheduled":
                     rule_list.append(analytic_rule)
             else:
                 rule_list.append(analytic_rule)
